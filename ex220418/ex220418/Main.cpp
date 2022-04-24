@@ -1,47 +1,95 @@
-// 참조 상태 객체를 만들고 deep copy를 구현
 #include <iostream>
 using namespace std;
 class Point 
 {
-	int* px = nullptr;
-	int* py = nullptr;
+private:
+	int* x = nullptr;
+	int* y = nullptr;
 public:
-	Point(int _x = 0, int _y = 0)
+	Point(int _x, int _y)
 	{
-		px = new int(_x);
-		py = new int(_y);
+		x = new int(_x);
+		y = new int(_y);
 
 		cout << "Point()" << endl;
 	}
-	Point(const Point& arg)
+	Point(const Point &arg)
 	{
-		px = new int();
-		*px = *arg.px;
-		py = new int();
-		*py = *arg.py;
-		cout << "copy Point()" << endl;
+		x = new int();
+		y = new int();
+		*x = *arg.x;
+		*y = *arg.y;
+		cout << "deep copy" << endl;
 	}
-	~Point() 
+	~Point()
 	{
-		delete px;
-		delete py;
+		delete x;
+		delete y;
 		cout << "~Point()" << endl;
 	}
-
 	void Print() const
 	{
-		cout << *px << ", " << *py << endl;
+		cout << *x << ", " << *y << endl;
 	}
 };
+
 int main()
 {
-	Point pt1(1, 2);
-	pt1.Print();
-
+	Point pt1(2, 3);
 	Point pt2(pt1);
-	pt2.Print();
 
+	pt1.Print();
+	pt2.Print();
 }
+
+
+
+
+
+//// 참조 상태 객체를 만들고 deep copy를 구현
+//#include <iostream>
+//using namespace std;
+//class Point 
+//{
+//	int* px = nullptr;
+//	int* py = nullptr;
+//public:
+//	Point(int _x = 0, int _y = 0)
+//	{
+//		px = new int(_x);
+//		py = new int(_y);
+//
+//		cout << "Point()" << endl;
+//	}
+//	Point(const Point& arg)
+//	{
+//		px = new int();
+//		*px = *arg.px;
+//		py = new int();
+//		*py = *arg.py;
+//		cout << "copy Point()" << endl;
+//	}
+//	~Point() 
+//	{
+//		delete px;
+//		delete py;
+//		cout << "~Point()" << endl;
+//	}
+//
+//	void Print() const
+//	{
+//		cout << *px << ", " << *py << endl;
+//	}
+//};
+//int main()
+//{
+//	Point pt1(1, 2);
+//	pt1.Print();
+//
+//	Point pt2(pt1);
+//	pt2.Print();
+//
+//}
 
 //#include <iostream>
 //using namespace std;
